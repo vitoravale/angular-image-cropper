@@ -776,7 +776,9 @@ Cropper.prototype.events = new function() {
   this.triggerHandler = function(event, params) {
     if (_triggers[event]) {
       for (var i in _triggers[event]) {
-        _triggers[event][i](params);
+        if(Object.prototype.toString.call(_triggers[event][i]) === '[object Function]'){
+          _triggers[event][i](params);
+        }
       }
     }
   };
